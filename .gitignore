@@ -1,0 +1,5 @@
+/.vagrant
+/xx.md
+/ubuntu-xenial-16.
+/provision/.env.*
+/provision/*.pub

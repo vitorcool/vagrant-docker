@@ -1,0 +1,21 @@
+version: '2'
+#docker run --name my-parse-server -v config-vol:/parse-server/config -p 1337:1337 --link my-mongo:mongo -d parse-server --appId #APPLICATION_ID --masterKey MASTER_KEY --databaseURI mongodb://mongo/test
+
+volumes:
+  config-vol:
+
+services:
+
+  PARSE_SERVER:
+    env_file:
+      - .env
+    image: parse-server
+ #   restart: unless-stopped
+    container_name: PARSE_SERVER
+    volumes:
+      - config-vol:/parse-server/config
+      - ./config.json:/parse-server/config.json
+    ports:
+      - ${HOST_MAP_IP}:${HOST_MAP_PORT}:1337     # portainer api http
+    entrypoint: ["./bin/parse-server", "config.json"]
+

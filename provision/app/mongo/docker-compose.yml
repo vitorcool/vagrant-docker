@@ -1,0 +1,53 @@
+version: '2'
+
+volumes:
+  data:
+
+services:
+    PORTAINER:
+        image: portainer/portainer:latest
+        restart: unless-stopped
+        container_name: portainers
+        volumes:
+          - data:/data
+          - /var/run/docker.sock:/var/run/docker.sock
+        ports:
+          - ${HOST_MAP_IP}:80:9000     # portainer api http
+        command: --no-auth
+
+
+
+# Use root/example as user/password credentials
+version: '2'
+
+volumes:
+  mongodbdata:
+
+services:
+
+  mongo:
+    env_file: .env
+    image: mongo
+    container_name: mongo
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+    volumes:
+      - mongodbdata:/data/db
+    ports:
+      - ${HOST_MAP_IP}:27017:27017
+
+  mongo-express:
+    env_file: .env
+    image: mongo-express
+    container_name: mongo-express
+    restart: unless-stopped
+    links:
+      - mongo
+    ports:
+      - ${HOST_MAP_IP}:${HOST_MAP_PORT}:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_USERNAME}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_PASSWORD}
+      ME_CONFIG_MONGODB_PORT: 27017

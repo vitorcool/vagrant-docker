@@ -1,0 +1,17 @@
+version: '2'
+#docker run -d -p 8080:4040 -v host/path/to/config.json:/src/Parse-Dashboard/parse-dashboard-config.json parseplatform/parse-dashboard --dev
+
+
+services:
+    PARSE_DASHBOARD:
+        env_file:
+          - .env
+        image: parseplatform/parse-dashboard
+        restart: unless-stopped
+        container_name: PARSE_DASHBOARD
+        volumes:
+          - ./config.json:/src/Parse-Dashboard/parse-dashboard-config.json
+        ports:
+          - ${HOST_MAP_IP}:${HOST_MAP_PORT}:4040     # portainer api http
+  #      entrypoint: ["parseplatform/parse-dashboard", "--appId", "${APPLICATION_ID}", "--masterKey", "${MASTER_KEY}", "--serverURL $SERVER_URL", "${SERVER_URL}"]
+
