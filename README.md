@@ -1,7 +1,7 @@
 # Vagrant-docker
 
 ## Requirements
-- *Computer to host cloud setup*
+- *Computer to host vagrant-docker setup*
 - [git](https://git-scm.com/downloads)
 - [vagrant](https://www.vagrantup.com/downloads.html) - This project has been devepoled and tested with Vagrant >=2.2.10 .
 - [virtualbox](https://www.virtualbox.org/wiki/Downloads)
