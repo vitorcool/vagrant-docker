@@ -15,6 +15,3 @@ nvm alias default v14.15.4
 nvm use default
 
 $dd/provision/scripts/app.portainer.sh
-#$dd/provision/scripts/app.mongo.sh
-#$dd/provision/scripts/app.parse-server.sh
-#$dd/provision/scripts/app.parse-dashboard.sh

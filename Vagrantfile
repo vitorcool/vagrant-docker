@@ -3,15 +3,16 @@ NODE_IP = "192.168.3.10"
 NODE_NAME = "VMDocker"
 VM_DNS_RESOLVER = "8.8.8.8"
 # file SSH-RSA OpenSSH Format
-VM_SSH_ACCESS_KEY ="/home/vagrant/provision/vitor_public_key.pub"
+VM_SSH_ACCESS_KEY ="/home/vagrant/provision/public_key.pub"
 VM_DOCKER_DAEMON_ARGS = "-H fd:// -H tcp://#{NODE_IP}:4243"
-VM_DOCKER_VER = "18.06.2~ce~3-0~ubuntu"
+#VM_DOCKER_VER = "18.06.2~ce~3-0~ubuntu"
+VM_DOCKER_VER = ""
 VM_OS = "ubuntu/xenial64"
 VM_MEMORY = 1024 #3072
 # K8s requires at least 2 CPUs
 VM_CPUS = 2
 VM_SYNC_FOLDERS = [
-  ["d:/WWW","/www"]
+  ["D:/galp","/galp"]
 ]
 
 def node_provision_args()
@@ -65,7 +66,7 @@ Vagrant.configure("2") do |config|
     NODE_IP = ip
 
     node.vm.provision "bootstrap", type: "shell", path: "provision/scripts/bootstrap.sh", env: node_provision_args(), run: "runonce"
-    node.vm.provision "kube",      type: "shell", path: "provision/scripts/docker.sh",    env: node_provision_args(), run: "runonce"
+    node.vm.provision "docker",      type: "shell", path: "provision/scripts/docker.sh",    env: node_provision_args(), run: "runonce"
     node.vm.provision "app",      type: "shell", path: "provision/scripts/app.sh",        env: node_provision_args()
 
   end

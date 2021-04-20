@@ -1,0 +1,31 @@
+version: '3'
+services:
+  keycloak:
+    image: jboss/keycloak:12.0.4
+    restart: unless-stopped
+    container_name: keycloak
+    
+    environment:
+      HOST_MAP_IP: ${HOST_MAP_IP}
+      HOST_NAME: ${HOST_NAME}
+      KEYCLOAK_HOSTNAME: ${HOST_NAME}
+      KEYCLOAK_USER: ${KEYCLOAK_USER}
+      KEYCLOAK_PASSWORD: ${KEYCLOAK_PASSWORD}
+      JDBC_PARAMS: ${JDBC_PARAMS}   
+      DEV_KEYCLOAK_THEMES_FOLDER: ${DEV_KEYCLOAK_THEMES_FOLDER}
+      DEV_KEYCLOAK_THEME: ${DEV_KEYCLOAK_THEME}
+      KEYCLOAK_WELCOME_THEME: ${DEV_KEYCLOAK_THEME}
+      KEYCLOAK_DEFAULT_THEME: ${DEV_KEYCLOAK_THEME}
+
+    ports:
+      - ${HOST_MAP_IP}:80:8080  # http#      - ${HOST_MAP_IP}89:8009 # Undertow AJP listener ajp listening on 0.0.0.0:8009
+      - ${HOST_MAP_IP}:443:8443 # https
+    volumes:
+#      - ./certs:/etc/x509/https:ro
+#      - ./themes/Layer8:/opt/jboss/keycloak/themes/Layer8:ro
+#      - ./themes/base:/opt/jboss/keycloak/themes/base:ro
+#      - ./config/standalone.xml:/opt/jboss/keycloak/standalone/configuration/standalone.xml:ro
+
+      - ${DEV_KEYCLOAK_THEMES_FOLDER}/${DEV_KEYCLOAK_THEME}:/opt/jboss/keycloak/themes/${DEV_KEYCLOAK_THEME}:ro
+      - ${DEV_KEYCLOAK_THEMES_FOLDER}/${DEV_KEYCLOAK_THEME}/common/resources/img/favicon.ico:/opt/jboss/keycloak/themes/common/resources/img/favicon.ico:ro
+ 
