@@ -3,4 +3,4 @@
 /ubuntu-xenial-16.
 /provision/.env.*
 /provision/*.pub
-/*log
+/*.log
