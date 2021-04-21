@@ -29,6 +29,8 @@ else
 fi
 apt-get install docker-ce-cli docker-compose -y
 
+
+
 # Setup daemon.
 cat > /etc/docker/daemon.json <<EOF
 {

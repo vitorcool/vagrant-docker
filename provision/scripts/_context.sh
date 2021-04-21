@@ -80,12 +80,12 @@ function backup_file_or_restore {
 function persist_env {
   VAR_KEY="$1"
   VAR_VALUE="$2"
-  set_file_key_value /etc/enviroment "$VAR_KEY" "$VAR_VALUE"  
+  set_file_key_value /etc/environment "$VAR_KEY" "$VAR_VALUE"  
   export ${VAR_KEY}=${VAR_VALUE}
 }
 
 function set_file_key_value  {
-  S_FILE="$1" #/etc/enviroment
+  S_FILE="$1" 
   VAR_KEY="$2"
   VAR_VALUE="$3"
   tmp=$(mktemp)
