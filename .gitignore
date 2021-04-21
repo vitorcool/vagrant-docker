@@ -4,3 +4,4 @@
 /provision/.env.*
 /provision/*.pub
 /*.log
+/*-lock.json
