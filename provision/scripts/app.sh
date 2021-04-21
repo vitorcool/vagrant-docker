@@ -2,16 +2,18 @@
 # dockerEasy2 provision Template
 #
 dd=/home/vagrant
-. $dd/provision/scripts/_comum.sh
+. $dd/provision/scripts/_context.sh
 node_info
 
-# install nodejs, npm, nvm
-curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh -o install_nvm.sh
-sudo chmod +x install_nvm.sh 
-./install_nvm.sh 
-source ./.profile
-nvm install v14.15.4
-nvm alias default v14.15.4
-nvm use default
+
+persist_env NVM_DIR /usr/local/nvm
+persist_env NODE_VERSION 14.15.4
+sudo curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash
+curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash
+source $NVM_DIR/nvm.sh \
+    && nvm install $NODE_VERSION \
+    && nvm alias default $NODE_VERSION \
+    && nvm use default
 
 $dd/provision/scripts/app.portainer.sh
+

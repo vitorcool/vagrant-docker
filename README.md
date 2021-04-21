@@ -20,8 +20,10 @@
   VM_OS = "ubuntu/xenial64"
   # Docker version for install - For last version just set VM_DOCKER_VER empty
   VM_DOCKER_VER = "18.06.2~ce~3-0~ubuntu"
+  # Change docker host
+  VM_DOCKER_HOST = "-H fd:// -H tcp://#{NODE_IP}:4243"
   # Change docker deamon args to enable TCPIP access
-  VM_DOCKER_DAEMON_ARGS = "-H fd:// -H tcp://#{NODE_IP}:4243"
+  VM_DOCKER_DAEMON_ARGS = "-H fd:// -H #{VM_DOCKER_HOST}"
   # Set VM_DNS_RESOLVER
   VM_DNS_RESOLVER = "8.8.8.8"
   # SSH-RSA OpenSSH to install on the node sshd service

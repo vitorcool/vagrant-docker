@@ -2,7 +2,7 @@
 # dockerEasy2
 #
 dd=/home/vagrant
-. $dd/provision/scripts/_comum.sh
+. $dd/provision/scripts/_context.sh
 node_info
 
 echo "------------------------------------------------------- Installing cowsay"

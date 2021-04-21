@@ -1,10 +1,11 @@
 IGNORE_PROVISION = false
 NODE_IP = "192.168.3.10"
-NODE_NAME = "VMDocker"
+NODE_NAME = "VMGDocker"
 VM_DNS_RESOLVER = "8.8.8.8"
 # file SSH-RSA OpenSSH Format
 VM_SSH_ACCESS_KEY ="/home/vagrant/provision/public_key.pub"
-VM_DOCKER_DAEMON_ARGS = "-H fd:// -H tcp://#{NODE_IP}:4243"
+VM_DOCKER_HOST = "tcp://#{NODE_IP}:4243"
+VM_DOCKER_DAEMON_ARGS = "-H fd:// -H #{VM_DOCKER_HOST}"
 #VM_DOCKER_VER = "18.06.2~ce~3-0~ubuntu"
 VM_DOCKER_VER = ""
 VM_OS = "ubuntu/xenial64"
@@ -22,6 +23,7 @@ def node_provision_args()
     "NODE_NAME" => "#{NODE_NAME}",
     "VM_DNS_RESOLVER" => "#{VM_DNS_RESOLVER}",
     "VM_SSH_ACCESS_KEY" => "#{VM_SSH_ACCESS_KEY}",
+    "VM_DOCKER_HOST" => "#{VM_DOCKER_HOST}",
     "VM_DOCKER_DAEMON_ARGS" => "#{VM_DOCKER_DAEMON_ARGS}",
     "VM_DOCKER_VER" => "#{VM_DOCKER_VER}",
     "VM_OS" => "#{VM_OS}",

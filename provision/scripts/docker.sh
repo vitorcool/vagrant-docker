@@ -2,7 +2,7 @@
 # dockerEasy2
 #
 dd=/home/vagrant
-. $dd/provision/scripts/_comum.sh
+. $dd/provision/scripts/_context.sh
 save_bash_environment
 
 node_info
@@ -63,6 +63,9 @@ function replace_docker_daemon_args {
   cat $S_FILE | grep  ^ExecStart=
 }
 replace_docker_daemon_args "${VM_DOCKER_DAEMON_ARGS}"
+
+# store DOCKER_HOST=
+persist_env DOCKER_HOST ${VM_DOCKER_HOST} 
 
 # Restart docker.
 systemctl daemon-reload
