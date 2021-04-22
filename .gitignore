@@ -5,3 +5,4 @@
 /provision/*.pub
 /*.log
 /*-lock.json
+/provision/app/keycloak/mysql_data
