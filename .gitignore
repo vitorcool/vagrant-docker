@@ -1,6 +1,5 @@
 /.vagrant
-/xx.md
-/ubuntu-xenial-16.
+/*.log
 /provision/.env.*
 /provision/*.pub
 /*.log
