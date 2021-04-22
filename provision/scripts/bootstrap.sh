@@ -5,6 +5,7 @@ dd=/home/vagrant
 . $dd/provision/scripts/_context.sh
 node_info
 
+
 echo "------------------------------------------------------- Installing cowsay"
 apt-get update
 apt-get install cowsay -y
