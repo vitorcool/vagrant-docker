@@ -68,11 +68,11 @@ function node_info {
 }
 
 function backup_file_or_restore {
-  $f=$1
-  if [ ! -f $f.backup ]; then
-    cp $f $f.backup
+  file=$1
+  if [ ! -f $file.backup ]; then
+    sudo cp $file $file.backup
   else
-    cp $f.backup $f
+    sudo cp $file.backup $file
   fi
 
 }

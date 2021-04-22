@@ -25,7 +25,7 @@ services:
 #      - ./themes/Layer8:/opt/jboss/keycloak/themes/Layer8:ro
 #      - ./themes/base:/opt/jboss/keycloak/themes/base:ro
 #      - ./config/standalone.xml:/opt/jboss/keycloak/standalone/configuration/standalone.xml:ro
- #     - ./standalone.xml:/opt/jboss/keycloak/standalone/configuration/standalone.xml:ro
+      - ./standalone.xml:/opt/jboss/keycloak/standalone/configuration/standalone.xml
       - ${DEV_KEYCLOAK_THEMES_FOLDER}/${DEV_KEYCLOAK_THEME}:/opt/jboss/keycloak/themes/${DEV_KEYCLOAK_THEME}:ro
       - ${DEV_KEYCLOAK_THEMES_FOLDER}/${DEV_KEYCLOAK_THEME}/common/resources/img/favicon.ico:/opt/jboss/keycloak/themes/common/resources/img/favicon.ico:ro
  

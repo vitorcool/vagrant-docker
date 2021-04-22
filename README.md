@@ -110,4 +110,4 @@ $ vagrant up --provision-with app
 sudo passwd root
 
 # restart docker service 
- sudo systemctl start docker
+ sudo systemctl restart docker

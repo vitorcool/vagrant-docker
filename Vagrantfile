@@ -13,7 +13,7 @@ VM_MEMORY = 1024 #3072
 # K8s requires at least 2 CPUs
 VM_CPUS = 2
 VM_SYNC_FOLDERS = [
-  ["D:/galp","/galp"]
+  ["D:/galp","/d/galp"]
 ]
 
 def node_provision_args()
