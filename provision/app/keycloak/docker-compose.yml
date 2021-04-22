@@ -38,6 +38,8 @@ services:
       - ./standalone.xml:/opt/jboss/keycloak/standalone/configuration/standalone.xml
       - ${DEV_KEYCLOAK_THEMES_FOLDER}/${DEV_KEYCLOAK_THEME}:/opt/jboss/keycloak/themes/${DEV_KEYCLOAK_THEME}:ro
       - ${DEV_KEYCLOAK_THEMES_FOLDER}/${DEV_KEYCLOAK_THEME}/common/resources/img/favicon.ico:/opt/jboss/keycloak/themes/common/resources/img/favicon.ico:ro
+
+      - ./disable-theme-cache.cli:/opt/jboss/startup-scripts/disable-theme-cache.cli
 #      - ./certs:/etc/x509/https:ro
 #      - ./themes/Layer8:/opt/jboss/keycloak/themes/Layer8:ro
 #      - ./themes/base:/opt/jboss/keycloak/themes/base:ro
