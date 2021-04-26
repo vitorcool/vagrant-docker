@@ -5,6 +5,10 @@ dd=/home/vagrant
 . $dd/provision/scripts/_context.sh
 node_info
 
+echo "------------------------------------------------------- Upgrade OS"
+sudo dpkg --configure -a
+sudo apt update -y
+sudo apt upgrade -y
 
 echo "------------------------------------------------------- Installing cowsay"
 apt-get update
