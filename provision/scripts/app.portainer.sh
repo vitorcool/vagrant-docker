@@ -24,5 +24,5 @@ sudo docker-compose down
 # finally up
 sudo docker-compose up &
 # wait for docker up
-sleep 6s
+sleep 6
 cd $dd
