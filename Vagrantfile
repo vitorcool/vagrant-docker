@@ -15,6 +15,14 @@ VM_CPUS = 2
 VM_SYNC_FOLDERS = [
   ["D:/galp","/d/galp"]
 ]
+VM_PORT_FORWARD = [
+  [NODE_IP,4243,4243], # docker
+  [NODE_IP,8000,8000], # portainer
+#  [NODE_IP,8080,8080],   # web-service http
+  [NODE_IP,8443,8443],   # web-service https
+  [NODE_IP,5000,5000],   # web-service https
+]
+
 
 def node_provision_args()
   {
@@ -62,6 +70,11 @@ Vagrant.configure("2") do |config|
     node.vm.network "private_network", ip: ip
     node.vm.provider "virtualbox" do |vb|
       vb.name = name
+    end
+
+    for index in 0 ... VM_PORT_FORWARD.size
+      port_forward = VM_PORT_FORWARD[index]
+      config.vm.network "forwarded_port", guest_ip: port_forward[0], guest: port_forward[1], host: port_forward[2]
     end
 
     NODE_NAME = name
