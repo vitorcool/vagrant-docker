@@ -16,11 +16,14 @@ VM_SYNC_FOLDERS = [
   ["D:/galp","/d/galp"]
 ]
 VM_PORT_FORWARD = [
-  [NODE_IP,4243,4243], # docker
-  [NODE_IP,8000,8000], # portainer
+  [NODE_IP,4243,4243,"docker"], # docker
+  [NODE_IP,8000,8000,"portainer"], # portainer
 #  [NODE_IP,8080,8080],   # web-service http
-  [NODE_IP,8443,8443],   # web-service https
-  [NODE_IP,5000,5000],   # web-service https
+  [NODE_IP,8443,8443,"keycloak https"],   # keycloak https
+  [NODE_IP,5000,5000,"amundsen fe http"],   # amundsen http
+  [NODE_IP,7474,7474,"neo4j http"],   # neo4j
+  [NODE_IP,7687,7687,"neo4j bolt"],   # neo4j
+  [NODE_IP,9200,9200,"elastic search"],   # elastic search          
 ]
 
 
@@ -74,7 +77,7 @@ Vagrant.configure("2") do |config|
 
     for index in 0 ... VM_PORT_FORWARD.size
       port_forward = VM_PORT_FORWARD[index]
-      config.vm.network "forwarded_port", guest_ip: port_forward[0], guest: port_forward[1], host: port_forward[2]
+      config.vm.network "forwarded_port", guest_ip: port_forward[0], guest: port_forward[1], host: port_forward[2],id: port_forward[3]
     end
 
     NODE_NAME = name
