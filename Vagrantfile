@@ -9,11 +9,11 @@ VM_DOCKER_DAEMON_ARGS = "-H fd:// -H #{VM_DOCKER_HOST}"
 #VM_DOCKER_VER = "18.06.2~ce~3-0~ubuntu"
 VM_DOCKER_VER = ""
 VM_OS = "ubuntu/xenial64"
-VM_MEMORY = 2048 #3072
+VM_MEMORY = 3072 #3072
 # K8s requires at least 2 CPUs
 VM_CPUS = 2
 VM_SYNC_FOLDERS = [
-  ["D:/galp","/d/galp"]
+  ["c:/galp","/c/galp"]
 ]
 VM_PORT_FORWARD = [
   [NODE_IP,4243,4243,"docker"], # docker
