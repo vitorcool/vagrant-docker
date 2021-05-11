@@ -51,6 +51,8 @@ set DOCKER_HOST=192.168.3.10:4243
 # avoid conflits between windows and linux file paths
 set COMPOSE_CONVERT_WINDOWS_PATHS=1
 ```
+# fix erro on "vagrant ssh" command resulting on : vagrant@127.0.0.1: Permission denied (publickey).
+set VAGRANT_PREFER_SYSTEM_BIN=0
 
 - ### Install and Run docker projects on your development folder
 ```

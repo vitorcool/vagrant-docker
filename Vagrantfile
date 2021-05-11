@@ -13,17 +13,20 @@ VM_MEMORY = 3072 #3072
 # K8s requires at least 2 CPUs
 VM_CPUS = 2
 VM_SYNC_FOLDERS = [
-  ["c:/galp","/c/galp"]
+  ["c:/galp","/c/galp"] 
 ]
-VM_PORT_FORWARD = [
+VM_PORT_FORWARD = [  
   [NODE_IP,4243,4243,"docker"], # docker
   [NODE_IP,8000,8000,"portainer"], # portainer
 #  [NODE_IP,8080,8080],   # web-service http
   [NODE_IP,8443,8443,"keycloak https"],   # keycloak https
   [NODE_IP,5000,5000,"amundsen fe http"],   # amundsen http
+  [NODE_IP,5001,5001,"amundsen metadata http"],   # amundsen http
+  [NODE_IP,5002,5002,"amundsen search http"],   # amundsen http
   [NODE_IP,7474,7474,"neo4j http"],   # neo4j
   [NODE_IP,7687,7687,"neo4j bolt"],   # neo4j
   [NODE_IP,9200,9200,"elastic search"],   # elastic search          
+  [NODE_IP,3306,3306,"mysql"],   # mysql
 ]
 
 
@@ -85,6 +88,8 @@ Vagrant.configure("2") do |config|
 
     node.vm.provision "bootstrap", type: "shell", path: "provision/scripts/bootstrap.sh", env: node_provision_args(), run: "runonce"
     node.vm.provision "docker",      type: "shell", path: "provision/scripts/docker.sh",    env: node_provision_args(), run: "runonce"
+    node.vm.provision "packer",      type: "shell", path: "provision/scripts/packer.sh",    env: node_provision_args(), run: "runonce"
+    node.vm.provision "aws",      type: "shell", path: "provision/scripts/aws.sh",    env: node_provision_args(), run: "runonce"
     node.vm.provision "app",      type: "shell", path: "provision/scripts/app.sh",        env: node_provision_args()
 
   end
