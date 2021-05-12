@@ -6,6 +6,10 @@
 - [vagrant](https://www.vagrantup.com/downloads.html) - This project has been devepoled and tested with Vagrant >=2.2.10 .
 - [virtualbox](https://www.virtualbox.org/wiki/Downloads)
 
+## Provisions
+- [Packer by HashiCorp](https://learn.hashicorp.com/tutorials/packer/get-started-install-cli)
+- [aws-cli](./AWS.md)
+
 
 ## Node default configuration
  dockerEasy2 setup in the <b> Vagrantfile </b> file
