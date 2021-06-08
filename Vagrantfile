@@ -1,6 +1,6 @@
 IGNORE_PROVISION = false
 NODE_IP = "192.168.215.10"
-NODE_NAME = "VMGDocker"
+NODE_NAME = "VMG"
 VM_DNS_RESOLVER = "8.8.8.8"
 # file SSH-RSA OpenSSH Format
 VM_SSH_ACCESS_KEY ="/home/vagrant/provision/public_key.pub"
@@ -55,7 +55,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = VM_OS
   # Sync time with the local host
   config.vm.provider 'virtualbox' do |vb|
-   vb.customize [ "guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 1000 ]
+   vb.customize [ "guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 1000 ]   
    vb.memory = VM_MEMORY
    vb.cpus = "#{VM_CPUS}"
   end
@@ -86,12 +86,14 @@ Vagrant.configure("2") do |config|
     NODE_NAME = name
     NODE_IP = ip
 
-    node.vm.provision "bootstrap", type: "shell", path: "provision/scripts/bootstrap.sh", env: node_provision_args(), run: "runonce"
-    node.vm.provision "docker",      type: "shell", path: "provision/scripts/docker.sh",    env: node_provision_args(), run: "runonce"
-    node.vm.provision "packer",      type: "shell", path: "provision/scripts/packer.sh",    env: node_provision_args(), run: "runonce"
-    node.vm.provision "aws",      type: "shell", path: "provision/scripts/aws.sh",    env: node_provision_args(), run: "runonce"
-    node.vm.provision "app",      type: "shell", path: "provision/scripts/app.sh",        env: node_provision_args()
-
+    node.vm.provision "bootstrap",type: "shell", path: "provision/scripts/bootstrap.sh", env: node_provision_args(), run: "runonce"
+    node.vm.provision "syncdate", type: "shell", path: "provision/scripts/syncdate.sh",  env: node_provision_args(), run: "runonce"
+    node.vm.provision "docker",   type: "shell", path: "provision/scripts/docker.sh",    env: node_provision_args(), run: "runonce"
+    node.vm.provision "portainer",type: "shell", path: "provision/scripts/app.portainer.sh",env: node_provision_args(), run: "runonce"
+    node.vm.provision "packer",   type: "shell", path: "provision/scripts/packer.sh",    env: node_provision_args(), run: "runonce"
+    node.vm.provision "aws",      type: "shell", path: "provision/scripts/aws.sh",       env: node_provision_args(), run: "runonce"
+    node.vm.provision "kubectl",  type: "shell", path: "provision/scripts/kubectl.sh",   env: node_provision_args(), run: "runonce"
+    node.vm.provision "nodejs",   type: "shell", path: "provision/scripts/nodejs.sh",    env: node_provision_args(), run: "runonce"
   end
   
 end
