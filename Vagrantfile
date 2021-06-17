@@ -23,8 +23,9 @@ VM_PORT_FORWARD = [
   [NODE_IP,5000,5000,"amundsen frontend http"],   # amundsen frontend http
   [NODE_IP,5001,5001,"amundsen metadata http"],   # amundsen metadata http
   [NODE_IP,5002,5002,"amundsen search http"],   # amundsen search http
-  [NODE_IP,4001,4001,"amundsen metadata http"],   # sbx amundsen metadata http
-  [NODE_IP,4002,4002,"amundsen search http"],   # sbx amundsen search http
+  [NODE_IP,4000,4000,"sbx amundsen frontend http"],   # sbx amundsen frontend http
+  [NODE_IP,4001,4001,"sbx amundsen metadata http"],   # sbx amundsen metadata http
+  [NODE_IP,4002,4002,"sbx amundsen search http"],   # sbx amundsen search http
   [NODE_IP,7474,7474,"neo4j http"],   # neo4j
   [NODE_IP,7687,7687,"neo4j bolt"],   # neo4j
   [NODE_IP,9200,9200,"elastic search"],   # elastic search          
