@@ -6,9 +6,10 @@ dd=/home/vagrant
 node_info
 
 
-echo "------------------------------------------------------- Installing cowsay"
+
+echo "------------------------------------------------------- Installing cowsay, jq packages"
 apt-get update
-apt-get install cowsay -y
+apt-get install cowsay jq -y
 cp /usr/games/cowsay /usr/bin
 
 echo "----------------------------------------------- store .env.$HOSTNAME file"
@@ -27,8 +28,8 @@ echo "-------------------------------------------------------- Update hosts file
 f="/etc/hosts"
 backup_file_or_restore $f
 
-hostNAME="${NODE_NAME}"  
-hostIP="${NODE_IP}"
+hostNAME="${VM_HOST_NAME}"  
+hostIP="${VM_HOST_IP}"
 echo "$hostIP $hostNAME" >> /etc/hosts
 
 cowsay $(cat /etc/hosts)

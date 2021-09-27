@@ -11,7 +11,7 @@ node_info
 ## setup PORTAINER enviroment
 cd $dd/provision/app/portainer
 
-set_file_key_value .env HOST_MAP_IP ${NODE_IP}
+set_file_key_value .env HOST_MAP_IP ${VM_HOST_IP}
 set_file_key_value .env HOST_MAP_PORT 8000
 set_file_key_value .env DOCKER_HOST ${VM_DOCKER_HOST}
 

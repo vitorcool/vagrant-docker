@@ -9,7 +9,7 @@ fi
 dd=/home/vagrant
 # load node setup variables if they exist
 envFile="$dd/provision/.env.$HOSTNAME"
-if [ -z $NODE_NAME ]; then
+if [ -z $HOSTNAME ]; then
   echo "Loading node setup variable into shell enviroment file:$envFile"
   if [ \ $envFile ];then
     . $envFile #loaded
@@ -25,37 +25,45 @@ if [ -z $NODE_NAME ]; then
   fi
 fi
 
-if command -v cowsay &> /dev/null
+if [command -v cowsay &> /dev/null ] 
 then
   cowsay $(< /home/vagrant/provision/.env.$HOSTNAME)  
 fi
 
 ####################################
+# Require linux jq command 
 function save_bash_environment {
-  if [ ! -z $NODE_NAME ]; then
-    cat > $envFile <<EOF
-PATH=${dd}/provision/scripts:\${PATH}
-IGNORE_PROVISION='${IGNORE_PROVISION}'
-NODE_IP='${NODE_IP}'
-NODE_NAME='${NODE_NAME}'
-VM_DNS_RESOLVER='${VM_DNS_RESOLVER}'
-VM_SSH_ACCESS_KEY='${VM_SSH_ACCESS_KEY}'
-VM_DOCKER_HOST='${VM_DOCKER_HOST}'
-VM_DOCKER_DAEMON_ARGS='${VM_DOCKER_DAEMON_ARGS}'
-VM_DOCKER_VER='${VM_DOCKER_VER}'
-VM_OS='${VM_OS}'
-VM_MEMORY='${VM_MEMORY}'
-VM_CPUS='${VM_CPUS}'
-VM_SYNC_FOLDERS='${VM_SYNC_FOLDERS}'
-EOF
-    if command -v cowsay &> /dev/null
+
+  if command -v jq &> /dev/null
+  then  
+    if [ ! -z $HOSTNAME ] 
     then
-      cowsay " $file Created"
+      # convert .env.$HOSTNAME.json to .env.$HOSTNAME
+      # basicaly convert pre-existent root keys from json file to .env file
+      jsonFile=${dd}/provision/.env.${HOSTNAME}.json
+      envFile=${dd}/provision/.env.${HOSTNAME}
+      envKeys= jq -r '. | keys[]  ' $jsonFile
+      echo "********************************"
+      echo "json file: ${jsonFile}"
+      echo "env file: ${envFile}"
+      echo "********************************"
+      rm $envFile
+      jq -c '. | keys[]' $jsonFile | while read i; do
+          echo $(echo ${i} | tr -d '"')=$(jq -r ".${i}" $jsonFile ) >> $envFile
+      done
+
+      if command -v cowsay &> /dev/null
+      then
+        cowsay " $file Created"
+      fi
+    else
+      echo "Enable do save node .env file. HOSTNAME=|Missing|."
     fi
   else
-    echo "Enable do save node .env file. NODE_NAME=|Missing|."
+    echo "Enable do generate node .env file. Linux jq command missing."
   fi
 }
+
 
 function node_info {
   echo "--------------------------------------------------------------------------"

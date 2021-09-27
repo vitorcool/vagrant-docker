@@ -1,5 +1,12 @@
 #
-# dockerEasy2 provision Template
+# dockerEasy2 provision 
+# Install NVM linux package (Node version manager)
+#   With NVM:
+#       - install predefined $NODE_VERSION with correspondent NPM tool (node package manager)
+#       - set default nodejs version to predefined $NODE_VERSION
+#       With NPM:
+#       - install concurrently, sass packages
+#   
 #
 dd=/home/vagrant
 . $dd/provision/scripts/_context.sh
