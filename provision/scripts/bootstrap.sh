@@ -5,7 +5,11 @@ dd=/home/vagrant
 . $dd/provision/scripts/_context.sh
 node_info
 
-
+# disabled for now - replace default network gateway
+#if [ -z ${VM_GATEWAY_IP} ]; then
+    #ip route del 0/0
+    #route add default gw $VM_GATEWAY_IP
+#fi    
 
 echo "------------------------------------------------------- Installing cowsay, jq packages"
 apt-get update
@@ -20,8 +24,8 @@ echo "------------------------------------------------------------- Disable swap
 swapoff -a
 sed -i '/swap/s/^/#/' /etc/fstab
 
-echo "---------------------------------------------------Install SSH Custom keys"
-cat ${VM_SSH_ACCESS_KEY} >> /home/vagrant/.ssh/authorized_keys
+#echo "---------------------------------------------------Install SSH Custom keys"
+#cat ${VM_SSH_ACCESS_KEY} >> /home/vagrant/.ssh/authorized_keys
 systemctl restart sshd
 
 echo "-------------------------------------------------------- Update hosts file"
