@@ -48,6 +48,7 @@ module VagrantDockerSetup
     VM_PROVISION = [
         "bootstrap",
         "syncdate",
+        "python3.9",
         "docker",
         "docker.setup", 
         "docker.gui-portainer",
