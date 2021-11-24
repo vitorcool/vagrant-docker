@@ -11,10 +11,13 @@ node_info
     #route add default gw $VM_GATEWAY_IP
 #fi    
 
-echo "------------------------------------------------------- Installing cowsay, jq packages"
+
+echo "------------------------------------------------------- Installing cowsay, jq, virtualbox-guest-dkms packages"
 apt-get update
-apt-get install cowsay jq -y
+apt-get install cowsay jq virtualbox-guest-dkms -y
 cp /usr/games/cowsay /usr/bin
+
+
 
 echo "----------------------------------------------- store .env.$HOSTNAME file"
 # create .env.$HOSTNAME file

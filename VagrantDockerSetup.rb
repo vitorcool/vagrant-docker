@@ -12,9 +12,9 @@ module VagrantDockerSetup
     #VM_DOCKER_VER = "18.06.2~ce~3-0~ubuntu"
     VM_DOCKER_VER = "17.03.0~ce-0~ubuntu-xenial"    
     VM_OS = "ubuntu/xenial64"
-    VM_MEMORY = 2048
+    VM_MEMORY = 4072
     # K8s requires at least 2 CPUs
-    VM_CPUS = 1
+    VM_CPUS = 2
     VM_SYNC_FOLDERS = [
         ["c:/galp","/c/galp"] 
     ]
@@ -24,6 +24,7 @@ module VagrantDockerSetup
         [VM_HOST_IP,80,80,"nginx http"], # http
         [VM_HOST_IP,443,443,"nginx https"], # https        
         [VM_HOST_IP,4243,4243,"docker"], # docker
+        [VM_HOST_IP,6000,6000,"debug server"], # debug server
         [VM_HOST_IP,8000,8000,"portainer"], # portainer
         [VM_HOST_IP,3000,3000,"keycloak ulysses:client1:vpn"],   # keycloak2 ulysses:client1:vpn
         [VM_HOST_IP,3001,3001,"keycloak ulysses:client1:public"], # keycloak2 ulysses:client1:public
