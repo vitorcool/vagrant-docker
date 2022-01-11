@@ -12,7 +12,7 @@ module VagrantDockerSetup
     #VM_DOCKER_VER = "18.06.2~ce~3-0~ubuntu"
     VM_DOCKER_VER = "17.03.0~ce-0~ubuntu-xenial"    
     VM_OS = "ubuntu/xenial64"
-    VM_MEMORY = 4072
+    VM_MEMORY = 5096
     # K8s requires at least 2 CPUs
     VM_CPUS = 2
     VM_SYNC_FOLDERS = [
@@ -20,29 +20,35 @@ module VagrantDockerSetup
     ]
 
     # TCP ports forwared from VM_HOST_IP to HOST 127.0.0.1 
-    VM_PORT_FORWARD = [  
+    VM_PORT_FORWARD = [          
         [VM_HOST_IP,80,80,"nginx http"], # http
         [VM_HOST_IP,443,443,"nginx https"], # https        
         [VM_HOST_IP,4243,4243,"docker"], # docker
-        [VM_HOST_IP,6000,6000,"debug server"], # debug server
         [VM_HOST_IP,8000,8000,"portainer"], # portainer
+
         [VM_HOST_IP,3000,3000,"keycloak ulysses:client1:vpn"],   # keycloak2 ulysses:client1:vpn
         [VM_HOST_IP,3001,3001,"keycloak ulysses:client1:public"], # keycloak2 ulysses:client1:public
+        [VM_HOST_IP,3306,3306,"mysql"],   # mysql
         [VM_HOST_IP,8080,8080,"keycloak http"],   # keycloak2 http
         [VM_HOST_IP,8443,8443,"keycloak https"],  # keycloak https
-        [VM_HOST_IP,8787,8787,"keycloak debug"],   # keycloak2 debug
-        [VM_HOST_IP,9443,9443,"keycloak IDP https"],  # keycloak2 https - identity provider
-        [VM_HOST_IP,9080,9080,"keycloak IDP http"],   # keycloak2 http - identity provider
         [VM_HOST_IP,5000,5000,"amundsen frontend http"],   # amundsen frontend http
         [VM_HOST_IP,5001,5001,"amundsen metadata http"],   # amundsen metadata http
         [VM_HOST_IP,5002,5002,"amundsen search http"],   # amundsen search http
-        [VM_HOST_IP,4000,4000,"sbx amundsen frontend http"],   # sbx amundsen frontend http
-        [VM_HOST_IP,4001,4001,"sbx amundsen metadata http"],   # sbx amundsen metadata http
-        [VM_HOST_IP,4002,4002,"sbx amundsen search http"],   # sbx amundsen search http
         [VM_HOST_IP,7474,7474,"neo4j http"],   # neo4j
         [VM_HOST_IP,7687,7687,"neo4j bolt"],   # neo4j
         [VM_HOST_IP,9200,9200,"elastic search"],   # elastic search          
-        [VM_HOST_IP,3306,3306,"mysql"],   # mysql
+######## kubectl portforward sbx services [es,neo4j]                
+        [VM_HOST_IP,17474,17474,"SBX neo4j http"],   # neo4j
+        [VM_HOST_IP,17687,17687,"SBX neo4j bolt"],   # neo4j
+        [VM_HOST_IP,19200,19200,"SBX elastic search"],   # elastic search          
+######## kubectl portforward sbx services [keycloak]   
+        [VM_HOST_IP,18443,18443,"SBX keycloak IDP https"],  # keycloak2 https - identity provider
+        [VM_HOST_IP,18080,18080,"SBX keycloak IDP http"],   # keycloak2 http - identity provider
+        [VM_HOST_IP,15432,15432,"SBX PostgreSQl as keycloak Storage"],   # SBX PostgreSQl as keycloak Storage
+######## kubectl portforward sbx services ulysses:[fe,search,metadata]
+        [VM_HOST_IP,15000,15000,"sbx amundsen frontend http"],   # sbx amundsen frontend http
+        [VM_HOST_IP,15001,15001,"sbx amundsen metadata http"],   # sbx amundsen metadata http
+        [VM_HOST_IP,15002,15002,"sbx amundsen search http"],   # sbx amundsen search http
     ]
 
     # Will provision VagrantDocker with foreach VM_PROVISION scriptName /provision/scripts/{scriptName}.sh 
