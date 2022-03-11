@@ -26,17 +26,31 @@ module VagrantDockerSetup
         [VM_HOST_IP,4243,4243,"docker"], # docker
         [VM_HOST_IP,8000,8000,"portainer"], # portainer
 
-        [VM_HOST_IP,3000,3000,"keycloak ulysses:client1:vpn"],   # keycloak2 ulysses:client1:vpn
-        [VM_HOST_IP,3001,3001,"keycloak ulysses:client1:public"], # keycloak2 ulysses:client1:public
+        [VM_HOST_IP,3001,3001,"nodejs http service1"],   # nodejs http service1
+        [VM_HOST_IP,3002,3002,"nodejs http service2"], # nodejs http service2
+        [VM_HOST_IP,3003,3003,"nodejs http service3"], # nodejs http service3
+        [VM_HOST_IP,3004,3004,"nodejs http service4"], # nodejs http service4
         [VM_HOST_IP,3306,3306,"mysql"],   # mysql
         [VM_HOST_IP,8080,8080,"keycloak http"],   # keycloak2 http
         [VM_HOST_IP,8443,8443,"keycloak https"],  # keycloak https
         [VM_HOST_IP,5000,5000,"amundsen frontend http"],   # amundsen frontend http
+        [VM_HOST_IP,5443,5443,"amundsen frontend https"],   # amundsen frontend 
         [VM_HOST_IP,5001,5001,"amundsen metadata http"],   # amundsen metadata http
         [VM_HOST_IP,5002,5002,"amundsen search http"],   # amundsen search http
         [VM_HOST_IP,7474,7474,"neo4j http"],   # neo4j
         [VM_HOST_IP,7687,7687,"neo4j bolt"],   # neo4j
-        [VM_HOST_IP,9200,9200,"elastic search"],   # elastic search          
+        [VM_HOST_IP,9200,9200,"elastic search"],   # elastic search      
+
+        [VM_HOST_IP,5010,5010,"amundsen frontend http v2"],   # amundsen frontend http
+        [VM_HOST_IP,5453,5453,"amundsen frontend https v2"],   # amundsen frontend 
+        [VM_HOST_IP,5011,5011,"amundsen metadata http v2"],   # amundsen metadata http
+        [VM_HOST_IP,5012,5012,"amundsen search http v2"],   # amundsen search http
+        [VM_HOST_IP,7475,7475,"neo4j http v2"],   # neo4j
+        [VM_HOST_IP,7688,7688,"neo4j bolt v2"],   # neo4j
+        [VM_HOST_IP,9201,9201,"elastic search v2"],   # elastic search      
+
+        [VM_HOST_IP,5672,5672,"RabbitMQ client connections"],   # RabbitMQ client connections        
+        [VM_HOST_IP,15672,15672,"RabbitMQ management website"], # RabbitMQ management website          
 ######## kubectl portforward sbx services [es,neo4j]                
         [VM_HOST_IP,17474,17474,"SBX neo4j http"],   # neo4j
         [VM_HOST_IP,17687,17687,"SBX neo4j bolt"],   # neo4j
