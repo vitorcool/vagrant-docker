@@ -21,8 +21,8 @@ module VagrantDockerSetup
 
     # TCP ports forwared from VM_HOST_IP to HOST 127.0.0.1 
     VM_PORT_FORWARD = [          
-        [VM_HOST_IP,80,80,"nginx http"], # http
-        [VM_HOST_IP,443,443,"nginx https"], # https        
+#        [VM_HOST_IP,80,80,"nginx http"], # http
+#        [VM_HOST_IP,443,443,"nginx https"], # https        
         [VM_HOST_IP,4243,4243,"docker"], # docker
         [VM_HOST_IP,8000,8000,"portainer"], # portainer
 
@@ -49,8 +49,11 @@ module VagrantDockerSetup
         [VM_HOST_IP,7688,7688,"neo4j bolt v2"],   # neo4j
         [VM_HOST_IP,9201,9201,"elastic search v2"],   # elastic search      
 
-        [VM_HOST_IP,5672,5672,"RabbitMQ client connections"],   # RabbitMQ client connections        
+        [VM_HOST_IP,5673,5673,"RabbitMQ client connections"],   # RabbitMQ client connections        
         [VM_HOST_IP,15672,15672,"RabbitMQ management website"], # RabbitMQ management website          
+        
+        [VM_HOST_IP,5432,5432,"Request Postgresql"], # RabbitMQ management website          
+
 ######## kubectl portforward sbx services [es,neo4j]                
         [VM_HOST_IP,17474,17474,"SBX neo4j http"],   # neo4j
         [VM_HOST_IP,17687,17687,"SBX neo4j bolt"],   # neo4j
