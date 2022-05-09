@@ -49,10 +49,10 @@ module VagrantDockerSetup
         [VM_HOST_IP,7688,7688,"neo4j bolt v2"],   # neo4j
         [VM_HOST_IP,9201,9201,"elastic search v2"],   # elastic search      
 
-        [VM_HOST_IP,5673,5673,"RabbitMQ client connections"],   # RabbitMQ client connections        
+        [VM_HOST_IP,5672,5672,"RabbitMQ client connections"],   # RabbitMQ client connections        
         [VM_HOST_IP,15672,15672,"RabbitMQ management website"], # RabbitMQ management website          
         
-        [VM_HOST_IP,5432,5432,"Request Postgresql"], # RabbitMQ management website          
+        [VM_HOST_IP,5432,5432,"Request Postgresql"], # Postgresql management website          
 
 ######## kubectl portforward sbx services [es,neo4j]                
         [VM_HOST_IP,17474,17474,"SBX neo4j http"],   # neo4j
