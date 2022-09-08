@@ -12,7 +12,7 @@ module VagrantDockerSetup
     #VM_DOCKER_VER = "18.06.2~ce~3-0~ubuntu"
     VM_DOCKER_VER = "17.03.0~ce-0~ubuntu-xenial"    
     VM_OS = "ubuntu/xenial64"
-    VM_MEMORY = 5096
+    VM_MEMORY = 4096
     # K8s requires at least 2 CPUs
     VM_CPUS = 2
     VM_SYNC_FOLDERS = [
@@ -26,10 +26,32 @@ module VagrantDockerSetup
         [VM_HOST_IP,4243,4243,"docker"], # docker
         [VM_HOST_IP,8000,8000,"portainer"], # portainer
 
-        [VM_HOST_IP,3001,3001,"nodejs http service1"],   # nodejs http service1
-        [VM_HOST_IP,3002,3002,"nodejs http service2"], # nodejs http service2
-        [VM_HOST_IP,3003,3003,"nodejs http service3"], # nodejs http service3
-        [VM_HOST_IP,3004,3004,"nodejs http service4"], # nodejs http service4
+        [VM_HOST_IP,3001,3001,"nodejs http service01"],   # nodejs http service1
+        [VM_HOST_IP,3002,3002,"nodejs http service02"], # nodejs http service2
+        [VM_HOST_IP,3003,3003,"nodejs http service03"], # nodejs http service3
+        [VM_HOST_IP,3004,3004,"nodejs http service04"], # nodejs http service4
+        [VM_HOST_IP,3005,3005,"nodejs http service05"],   # nodejs http service1
+        [VM_HOST_IP,3006,3006,"nodejs http service06"], # nodejs http service2
+        [VM_HOST_IP,3007,3007,"nodejs http service07"], # nodejs http service3
+        [VM_HOST_IP,3008,3008,"nodejs http service08"], # nodejs http service4
+        [VM_HOST_IP,3101,3101,"nodejs http service11"],   # nodejs http service1
+        [VM_HOST_IP,3102,3102,"nodejs http service12"], # nodejs http service2
+        [VM_HOST_IP,3103,3103,"nodejs http service13"], # nodejs http service3
+        [VM_HOST_IP,3104,3104,"nodejs http service14"], # nodejs http service4
+        [VM_HOST_IP,3105,3105,"nodejs http service15"],   # nodejs http service1
+        [VM_HOST_IP,3106,3106,"nodejs http service16"], # nodejs http service2
+        [VM_HOST_IP,3107,3107,"nodejs http service17"], # nodejs http service3
+        [VM_HOST_IP,3108,3108,"nodejs http service18"], # nodejs http service4
+
+        [VM_HOST_IP,2001,2001,"nodejs http service91"],   # nodejs http service1
+        [VM_HOST_IP,2002,2002,"nodejs http service92"], # nodejs http service2
+        [VM_HOST_IP,2003,2003,"nodejs http service93"], # nodejs http service3
+        [VM_HOST_IP,2004,2004,"nodejs http service94"], # nodejs http service4
+        [VM_HOST_IP,2005,2005,"nodejs http service95"],   # nodejs http service1
+        [VM_HOST_IP,2006,2006,"nodejs http service96"], # nodejs http service2
+        [VM_HOST_IP,2007,2007,"nodejs http service97"], # nodejs http service3
+        [VM_HOST_IP,2008,2008,"nodejs http service98"], # nodejs http service4
+
         [VM_HOST_IP,3306,3306,"mysql"],   # mysql
         [VM_HOST_IP,8080,8080,"keycloak http"],   # keycloak2 http
         [VM_HOST_IP,8443,8443,"keycloak https"],  # keycloak https
