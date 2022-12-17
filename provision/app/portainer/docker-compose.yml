@@ -7,7 +7,7 @@ services:
     PORTAINER:
         environment: 
           DOCKER_HOST: ${DOCKER_HOST}
-        image: portainer/portainer:latest
+        image: portainer/portainer-ce
         restart: unless-stopped
         container_name: portainers
         volumes:
@@ -15,7 +15,8 @@ services:
 #          - /var/run/docker.sock:/var/run/docker.sock
         ports:
           - ${HOST_MAP_IP}:${HOST_MAP_PORT}:9000     # portainer api http
-        command: --no-auth --host=${DOCKER_HOST}
+        #command: --no-auth --host=${DOCKER_HOST}
+        command: --host=${DOCKER_HOST}
 
 
 

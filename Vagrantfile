@@ -20,12 +20,12 @@ if ARGV[0] == "up"
 end
 
 Vagrant.configure("2") do |config|
-
   # Xenial is a bit old but works best at the moment. 
   # available for Xenial only currently
   config.vm.box = VM_OS
   # Sync time with the local host
   config.vm.provider 'virtualbox' do |vb|
+    vb.gui = false
     vb.customize [ "guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 1000 ]   
     vb.memory = VM_MEMORY
     vb.cpus = "#{VM_CPUS}"
@@ -44,15 +44,17 @@ Vagrant.configure("2") do |config|
 
     node.vm.hostname  = name
     node.vm.network "private_network", ip: ip, :netmask => '255.255.0.0', :bridge => 'eth0'
+
     node.vm.provider "virtualbox" do |vb|
       vb.name = name
     end
 
     for index in 0 ... VM_PORT_FORWARD.size
       port_forward = VM_PORT_FORWARD[index]
-      config.vm.network "forwarded_port", guest_ip: port_forward[0], guest: port_forward[1], host: port_forward[2],id: port_forward[3], auto_correct: false
+      # "forwarded_port, guest_ip: #{port_forward[0]}, guest: #{port_forward[1]}, host: #{port_forward[2]},id: '#{port_forward[3]}', auto_correct: false"
+      config.vm.network "forwarded_port", guest_ip: port_forward[0], guest: port_forward[1], host: port_forward[2], host_ip: VM_PORT_FORWARD_HOST_IP,  id: port_forward[3], auto_correct: false
     end
-
+    
     for index in 0 ... VM_PROVISION.size
       scriptName = VM_PROVISION[index]
       node.vm.provision scriptName, type: "shell", path: "provision/scripts/#{scriptName}.sh", env: node_provision_args, run: "runonce"

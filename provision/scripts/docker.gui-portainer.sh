@@ -18,7 +18,7 @@ set_file_key_value .env DOCKER_HOST ${VM_DOCKER_HOST}
 cowsay $(cat .env)
 
 # pull portainer image
-sudo docker pull portainer/portainer
+sudo docker pull portainer/portainer-ce
 # if up then down
 sudo docker-compose down
 # finally up
